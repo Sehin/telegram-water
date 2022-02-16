@@ -3,6 +3,8 @@ import logging
 from telegram import Update, ForceReply
 from telegram.ext import Updater, CallbackContext, CommandHandler
 
+from arguments import parse_args
+
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
@@ -25,8 +27,8 @@ def today(update: Update, context: CallbackContext):
     # in progress
     pass
 
-def main():
-    updater = Updater("TOKEN_HERE")
+def main(token: str):
+    updater = Updater(token)
 
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start))
@@ -36,4 +38,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    args = parse_args()
+    main(args.token)
