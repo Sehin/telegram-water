@@ -27,8 +27,7 @@ def start(update: Update, context: CallbackContext):
         'Hi\!\n'
         'I want to count how much water you drank\.\n'
         'Just send number to me\!\n'
-        'If you want to check today value \- use /today command',
-        reply_markup=ForceReply(selective=True)
+        'If you want to check today value \- use /today command'
     )
 
 
@@ -38,7 +37,7 @@ def set_water_count(update: Update, context: CallbackContext):
     text = update.message.text
     if not text.isdigit():
         update.message.reply_text(
-            f'You need to send me water in milliliter! (it should be digit)'
+            f'You need to send me water in a milliliters! (it should be digit)'
         )
     else:
         db.add_water(user=user, water_count=int(text))
